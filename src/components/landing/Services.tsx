@@ -12,41 +12,53 @@ import { Button } from "@/components/ui/button";
 import { Reveal } from "./Reveal";
 import { SERVICES, type Service } from "./data";
 import { whatsappLink } from "@/lib/contact";
+import { HorizontalShowcaseCarousel } from "./HorizontalShowcaseCarousel";
 
 export function Services() {
   const [active, setActive] = useState<Service | null>(null);
 
   return (
-    <section id="servicos" className="relative py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <Reveal className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Serviços</p>
-          <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
+    <section
+      id="servicos"
+      className="snap-section relative flex min-h-[100svh] flex-col justify-center py-20 lg:py-28"
+    >
+      <div className="mx-auto w-full max-w-7xl px-5 lg:px-8">
+        <Reveal className="mx-auto max-w-3xl text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary sm:text-sm">
+            Serviços
+          </p>
+          <h2 className="mt-3 h-section font-display font-extrabold text-foreground">
             Tudo o que a sua empresa precisa para avançar.
           </h2>
+          <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground">
+            Estratégia, design, tecnologia e comunicação — num só parceiro.
+          </p>
         </Reveal>
+      </div>
 
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {SERVICES.map((s, i) => (
-            <Reveal key={s.title} delay={(i % 4) * 0.06}>
-              <motion.button
-                onClick={() => setActive(s)}
-                whileHover={{ y: -6 }}
-                className="group flex h-full w-full flex-col rounded-2xl border border-border bg-card p-6 text-left shadow-soft transition-colors hover:border-primary/40"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-primary text-primary-foreground shadow-glow">
-                  <s.icon className="h-6 w-6" />
-                </div>
-                <h3 className="mt-5 font-display text-xl font-bold text-foreground">{s.title}</h3>
-                <p className="mt-2 flex-1 text-sm text-muted-foreground">{s.short}</p>
-                <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">
-                  Saber mais
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </span>
-              </motion.button>
-            </Reveal>
+      <div className="mt-10 lg:mt-14">
+        <HorizontalShowcaseCarousel
+          ariaLabel="Serviços do Centro Prospectivo Tecnológico"
+          items={SERVICES.map((s, i) => (
+            <motion.button
+              key={s.title}
+              onClick={() => setActive(s)}
+              whileHover={{ y: -6 }}
+              transition={{ delay: (i % 3) * 0.04 }}
+              className="group flex h-full w-full flex-col items-center rounded-3xl border border-border bg-card p-7 text-center shadow-card transition-colors hover:border-primary/40 min-h-[280px]"
+            >
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-primary text-primary-foreground shadow-glow">
+                <s.icon className="h-7 w-7" />
+              </div>
+              <h3 className="mt-5 font-display text-xl font-bold text-foreground">{s.title}</h3>
+              <p className="mt-2 flex-1 text-sm text-muted-foreground">{s.short}</p>
+              <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                Saber mais
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </span>
+            </motion.button>
           ))}
-        </div>
+        />
       </div>
 
       <Dialog open={!!active} onOpenChange={(o) => !o && setActive(null)}>
@@ -67,7 +79,7 @@ export function Services() {
                   </li>
                 ))}
               </ul>
-              <Button asChild variant="whatsapp" size="lg" className="mt-4">
+              <Button asChild variant="hero" size="lg" className="mt-4 w-full">
                 <a
                   href={whatsappLink(
                     `Olá, quero saber mais sobre ${active.title} do Centro Prospectivo Tecnológico.`,

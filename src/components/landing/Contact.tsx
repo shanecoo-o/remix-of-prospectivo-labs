@@ -31,17 +31,26 @@ export function Contact() {
   const set = (k: keyof typeof form) => (v: string) => setForm((f) => ({ ...f, [k]: v }));
 
   return (
-    <section id="contacto" className="relative py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+    <section
+      id="contacto"
+      className="snap-section relative flex min-h-[100svh] flex-col justify-center py-20 lg:py-28"
+    >
+      <div className="mx-auto w-full max-w-7xl px-5 lg:px-8">
+        <Reveal className="mx-auto max-w-3xl text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary sm:text-sm">
+            Contacto
+          </p>
+          <h2 className="mt-3 h-section font-display font-extrabold text-foreground">
+            Vamos construir o próximo passo.
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground">
+            Preencha o formulário ou fale connosco directamente pelos canais abaixo.
+          </p>
+        </Reveal>
+
+        <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:gap-16">
           <Reveal>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Contacto</p>
-            <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
-              Vamos construir o próximo passo.
-            </h2>
-            <p className="mt-5 text-lg text-muted-foreground">
-              Preencha o formulário ou fale connosco diretamente pelos canais abaixo.
-            </p>
+
 
             <div className="mt-8 flex flex-col gap-3">
               {[

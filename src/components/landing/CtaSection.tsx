@@ -5,7 +5,7 @@ import { CONTACT, whatsappLink } from "@/lib/contact";
 
 export function CtaSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-ink py-24 text-primary-foreground lg:py-32">
+    <section className="snap-section relative flex min-h-[100svh] flex-col justify-center overflow-hidden bg-gradient-ink py-20 text-primary-foreground lg:py-28">
       <div className="pointer-events-none absolute inset-0 tech-grid opacity-25" />
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-[30rem] w-[30rem] -translate-x-1/2 -translate-y-1/2 animate-blob bg-primary opacity-25 blur-3xl" />
       <div className="relative mx-auto max-w-4xl px-5 text-center lg:px-8">

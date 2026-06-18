@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { MessageCircle, Phone, ArrowRight, Instagram, Facebook, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MORPH_WORDS } from "./data";
@@ -7,51 +7,60 @@ import { CONTACT, whatsappLink, DEFAULT_WA_MESSAGE } from "@/lib/contact";
 
 export function Hero() {
   const [index, setIndex] = useState(0);
+  const reduce = useReducedMotion();
 
   useEffect(() => {
-    const id = setInterval(() => setIndex((i) => (i + 1) % MORPH_WORDS.length), 2200);
+    if (reduce) return;
+    const id = setInterval(() => setIndex((i) => (i + 1) % MORPH_WORDS.length), 2000);
     return () => clearInterval(id);
-  }, []);
+  }, [reduce]);
 
   return (
-    <section id="inicio" className="relative overflow-hidden pt-32 pb-20 lg:pt-44 lg:pb-28">
-      {/* fundo */}
+    <section
+      id="inicio"
+      className="snap-section relative flex min-h-[100svh] items-center justify-center overflow-hidden pt-[calc(var(--navbar-height)+1rem)] pb-10"
+    >
       <div className="pointer-events-none absolute inset-0 tech-grid opacity-60" />
-      <div className="pointer-events-none absolute -right-32 -top-20 h-[34rem] w-[34rem] animate-blob bg-gradient-primary opacity-20 blur-3xl" />
-      <div className="pointer-events-none absolute -left-40 top-40 h-96 w-96 animate-blob bg-primary-glow opacity-10 blur-3xl" />
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute -right-32 -top-20 h-[34rem] w-[34rem] animate-blob bg-gradient-primary opacity-25 blur-3xl"
+        animate={reduce ? undefined : { x: [0, 20, 0], y: [0, -10, 0] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <div className="pointer-events-none absolute -left-40 top-40 h-96 w-96 animate-blob bg-primary-glow opacity-15 blur-3xl" />
 
-      <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
+      <div className="relative mx-auto w-full max-w-5xl px-5 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           className="mx-auto max-w-4xl text-center"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-border glass px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+          <span className="inline-flex items-center gap-2 rounded-full border border-border glass px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary sm:text-xs">
             Visão · Tecnologia · Crescimento
           </span>
 
-          <h1 className="mt-6 font-display text-5xl font-extrabold leading-[1.02] tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+          <h1 className="mt-5 h-display font-display font-extrabold text-foreground">
             Transformamos visão em{" "}
             <span className="text-gradient">tecnologia, marca e crescimento.</span>
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
-            O Centro Prospectivo Tecnológico cria estratégias, websites, softwares, apps mobile,
-            design, marketing digital, motion design e vídeos para empresas que querem evoluir.
+          <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground sm:mt-5 sm:text-lg">
+            Estratégia, design, marketing, motion, websites, softwares e apps para empresas
+            que querem evoluir.
           </p>
 
           {/* frase morph */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-3 font-display text-2xl font-bold sm:text-3xl">
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-2 gap-y-2 font-display text-xl font-bold sm:text-2xl lg:text-3xl">
             <span className="text-foreground">Criamos</span>
-            <span className="relative inline-flex h-10 min-w-[8.5rem] items-center justify-center overflow-hidden rounded-lg bg-gradient-primary px-4 sm:h-12">
+            <span className="relative inline-flex h-9 min-w-[7.5rem] items-center justify-center overflow-hidden rounded-lg bg-gradient-primary px-3 sm:h-11 sm:min-w-[9rem] sm:px-4">
               <AnimatePresence mode="wait">
                 <motion.span
                   key={MORPH_WORDS[index]}
-                  initial={{ y: "100%", opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: "-100%", opacity: 0 }}
-                  transition={{ duration: 0.45, ease: [0.21, 0.5, 0.27, 0.99] }}
+                  initial={{ y: "100%", opacity: 0, filter: "blur(6px)" }}
+                  animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+                  exit={{ y: "-100%", opacity: 0, filter: "blur(6px)" }}
+                  transition={{ duration: 0.5, ease: [0.21, 0.5, 0.27, 0.99] }}
                   className="text-primary-foreground"
                 >
                   {MORPH_WORDS[index]}
@@ -61,25 +70,25 @@ export function Hero() {
             <span className="text-foreground">que movem negócios.</span>
           </div>
 
-          <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button asChild variant="hero" size="xl">
+          <div className="mt-7 flex flex-col items-center justify-center gap-2.5 sm:flex-row sm:flex-wrap">
+            <Button asChild variant="hero" size="lg" className="w-full sm:w-auto">
               <a href={whatsappLink(DEFAULT_WA_MESSAGE)} target="_blank" rel="noopener noreferrer">
                 <MessageCircle /> Falar no WhatsApp
               </a>
             </Button>
-            <Button asChild variant="glass" size="xl">
+            <Button asChild variant="glass" size="lg" className="w-full sm:w-auto">
               <a href="#servicos">
                 Ver Serviços <ArrowRight />
               </a>
             </Button>
-            <Button asChild variant="outline" size="xl">
+            <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
               <a href={`tel:${CONTACT.phoneTel}`}>
                 <Phone /> Ligar Agora
               </a>
             </Button>
           </div>
 
-          <div className="mt-8 flex items-center justify-center gap-3">
+          <div className="mt-6 flex items-center justify-center gap-2.5 sm:gap-3">
             {[
               { Icon: MessageCircle, href: whatsappLink(DEFAULT_WA_MESSAGE), label: "WhatsApp" },
               { Icon: Phone, href: `tel:${CONTACT.phoneTel}`, label: "Telefone" },
@@ -93,9 +102,9 @@ export function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-border text-muted-foreground transition-all hover:-translate-y-1 hover:border-primary hover:text-primary"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-all hover:-translate-y-1 hover:border-primary hover:text-primary"
               >
-                <Icon className="h-5 w-5" />
+                <Icon className="h-4 w-4" />
               </a>
             ))}
           </div>
