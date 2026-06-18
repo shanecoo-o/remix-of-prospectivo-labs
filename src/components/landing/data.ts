@@ -134,4 +134,12 @@ export const BENEFITS = [
   "Acompanhamento contínuo",
 ];
 
-export const MORPH_WORDS = ["Websites", "Softwares", "Apps", "Marcas", "Vídeos", "Sistemas"];
+export const MORPH_WORDS = [
+  "estratégia",
+  "websites",
+  "softwares",
+  "apps",
+  "marcas",
+  "campanhas",
+  "motion",
+];

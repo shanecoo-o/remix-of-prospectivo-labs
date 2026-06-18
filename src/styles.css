@@ -55,6 +55,7 @@
 
 :root {
   --radius: 0.75rem;
+  --navbar-height: 68px;
 
   --background: oklch(1 0 0);
   --foreground: oklch(0.18 0.02 264);
@@ -65,7 +66,6 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.18 0.02 264);
 
-  /* Azul tecnológico */
   --primary: oklch(0.55 0.21 258);
   --primary-foreground: oklch(0.99 0 0);
   --primary-glow: oklch(0.68 0.18 250);
@@ -98,7 +98,6 @@
   --sidebar-border: oklch(0.92 0.01 256);
   --sidebar-ring: oklch(0.55 0.21 258);
 
-  /* Tokens próprios */
   --gradient-primary: linear-gradient(135deg, oklch(0.55 0.21 258), oklch(0.68 0.18 250));
   --gradient-ink: linear-gradient(135deg, oklch(0.2 0.03 264), oklch(0.32 0.06 262));
   --gradient-hero: radial-gradient(120% 120% at 80% 0%, oklch(0.93 0.06 256 / 0.7) 0%, transparent 55%);
@@ -136,6 +135,11 @@
     border-color: var(--color-border);
   }
 
+  html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -145,11 +149,18 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
   }
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
     letter-spacing: -0.03em;
+  }
+
+  /* Section snap defaults — sections opt in via class .snap-section */
+  .snap-section {
+    scroll-snap-align: start;
+    scroll-margin-top: var(--navbar-height);
   }
 }
 
@@ -189,6 +200,41 @@
       linear-gradient(to bottom, oklch(0.55 0.21 258 / 0.06) 1px, transparent 1px);
     background-size: 56px 56px;
   }
+
+  /* Hide scrollbars everywhere but keep scroll functional */
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Thin transparent global scrollbar */
+  body::-webkit-scrollbar { width: 8px; height: 8px; }
+  body::-webkit-scrollbar-track { background: transparent; }
+  body::-webkit-scrollbar-thumb {
+    background: oklch(0.55 0.21 258 / 0.25);
+    border-radius: 999px;
+  }
+
+  /* Edge fade for horizontal carousels */
+  .edge-fade-x {
+    mask-image: linear-gradient(to right, transparent 0, #000 4%, #000 96%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 4%, #000 96%, transparent 100%);
+  }
+
+  /* Fluid typography */
+  .h-display {
+    font-size: clamp(2.25rem, 5vw + 0.5rem, 4.5rem);
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+  }
+  .h-section {
+    font-size: clamp(1.875rem, 3.5vw + 0.5rem, 3.25rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+  }
 }
 
 @keyframes blob-morph {
@@ -216,5 +262,13 @@
   }
   html {
     scroll-behavior: auto;
+    scroll-snap-type: none;
+  }
+}
+
+/* Disable snap on small screens to keep content reachable */
+@media (max-width: 767px) {
+  html {
+    scroll-snap-type: none;
   }
 }
