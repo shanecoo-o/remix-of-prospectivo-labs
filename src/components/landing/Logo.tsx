@@ -1,14 +1,13 @@
-import logo from "@/assets/logo.jpeg.asset.json";
-
-export function Logo({ className = "h-9" }: { className?: string }) {
+﻿export function Logo({ className = "h-9" }: { className?: string }) {
   return (
     <img
-      src={logo.url}
+      src="/logo-centro-prospectivo.png"
       alt="Centro Prospectivo Tecnológico"
       className={`${className} w-auto object-contain`}
       loading="eager"
-      width={240}
-      height={80}
+      decoding="async"
+      width={320}
+      height={120}
     />
   );
 }
