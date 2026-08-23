@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -6,9 +6,9 @@ import { Logo } from "./Logo";
 import { whatsappLink, DEFAULT_WA_MESSAGE } from "@/lib/contact";
 
 const LINKS = [
-  { label: "Início", href: "#inicio" },
-  { label: "Serviços", href: "#servicos" },
-  { label: "Soluções", href: "#solucoes" },
+  { label: "InÃ­cio", href: "#inicio" },
+  { label: "ServiÃ§os", href: "#servicos" },
+  { label: "SoluÃ§Ãµes", href: "#solucoes" },
   { label: "Processo", href: "#processo" },
   { label: "Projectos", href: "#projectos" },
   { label: "Contacto", href: "#contacto" },
@@ -32,8 +32,8 @@ export function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 lg:px-8">
-        <a href="#inicio" className="flex items-center" aria-label="Centro Prospectivo Tecnológico">
-          <Logo className="h-8 sm:h-9" />
+        <a href="#inicio" className="flex items-center" aria-label="Centro Prospectivo TecnolÃ³gico">
+          <Logo className="h-11 sm:h-12 lg:h-14" />
         </a>
 
         <ul className="hidden items-center gap-7 lg:flex">
@@ -76,7 +76,7 @@ export function Navbar() {
             transition={{ duration: 0.35, ease: [0.21, 0.5, 0.27, 0.99] }}
           >
             <div className="flex items-center justify-between px-5 py-3">
-              <Logo className="h-8" />
+              <Logo className="h-10 sm:h-11" />
               <button onClick={() => setOpen(false)} aria-label="Fechar menu" className="p-2">
                 <X />
               </button>
@@ -117,3 +117,4 @@ export function Navbar() {
     </header>
   );
 }
+
