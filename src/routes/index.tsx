@@ -3,24 +3,25 @@ import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { Navbar } from "@/components/landing/Navbar";
 import { Hero } from "@/components/landing/Hero";
+import { TrustBar } from "@/components/landing/TrustBar";
 import { Services } from "@/components/landing/Services";
+import { TechShowcase } from "@/components/landing/TechShowcase";
 import { HowWeHelp } from "@/components/landing/HowWeHelp";
 import { StickyMobileCta } from "@/components/landing/StickyMobileCta";
-import { TechShowcase } from "@/components/landing/TechShowcase";
 
 const Solutions = lazy(() => import("@/components/landing/Solutions").then((m) => ({ default: m.Solutions })));
 const Process = lazy(() => import("@/components/landing/Process").then((m) => ({ default: m.Process })));
 const Projects = lazy(() => import("@/components/landing/Projects").then((m) => ({ default: m.Projects })));
-const MotionVideo = lazy(() => import("@/components/landing/MotionVideo").then((m) => ({ default: m.MotionVideo })));
 const LeadCapture = lazy(() => import("@/components/landing/LeadCapture").then((m) => ({ default: m.LeadCapture })));
+const MotionVideo = lazy(() => import("@/components/landing/MotionVideo").then((m) => ({ default: m.MotionVideo })));
 const Benefits = lazy(() => import("@/components/landing/Benefits").then((m) => ({ default: m.Benefits })));
 const CtaSection = lazy(() => import("@/components/landing/CtaSection").then((m) => ({ default: m.CtaSection })));
 const Contact = lazy(() => import("@/components/landing/Contact").then((m) => ({ default: m.Contact })));
 const Footer = lazy(() => import("@/components/landing/Footer").then((m) => ({ default: m.Footer })));
 
-const TITLE = "Centro Prospectivo Tecnológico | Negócios, Marketing, Design e Tecnologia";
+const TITLE = "Centro Prospectivo Tecnológico | Websites, Sistemas, Apps, Marketing e Automação";
 const DESC =
-  "Consultoria de negócios, marketing digital, motion design, design, vídeos, websites, softwares e apps mobile para empresas que querem crescer.";
+  "Criamos websites, sistemas, apps, marketing, branding, motion e automação para empresas que querem crescer com tecnologia, estratégia e conversão.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -42,9 +43,10 @@ function Index() {
       <Navbar />
       <main>
         <Hero />
+        <TrustBar />
         <Services />
-        <HowWeHelp />
         <TechShowcase />
+        <HowWeHelp />
         <Suspense fallback={<div className="h-32" />}>
           <Solutions />
           <Process />

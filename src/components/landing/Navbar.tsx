@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X, MessageCircle } from "lucide-react";
+import { ClipboardCheck, Menu, MessageCircle, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "./Logo";
 import { whatsappLink, DEFAULT_WA_MESSAGE } from "@/lib/contact";
@@ -8,10 +8,10 @@ import { whatsappLink, DEFAULT_WA_MESSAGE } from "@/lib/contact";
 const LINKS = [
   { label: "Início", href: "#inicio" },
   { label: "Serviços", href: "#servicos" },
-  { label: "Soluções", href: "#solucoes" },
+  { label: "Laboratório", href: "#laboratorio" },
   { label: "Processo", href: "#processo" },
   { label: "Projectos", href: "#projectos" },
-  { label: "Contacto", href: "#contacto" },
+  { label: "Diagnóstico", href: "#diagnostico" },
 ];
 
 export function Navbar() {
@@ -36,7 +36,7 @@ export function Navbar() {
           <Logo className="h-11 sm:h-12 lg:h-14" />
         </a>
 
-        <ul className="hidden items-center gap-7 lg:flex">
+        <ul className="hidden items-center gap-6 lg:flex">
           {LINKS.map((l) => (
             <li key={l.href}>
               <a
@@ -49,10 +49,15 @@ export function Navbar() {
           ))}
         </ul>
 
-        <div className="hidden lg:block">
-          <Button asChild variant="hero" size="lg">
+        <div className="hidden items-center gap-2 lg:flex">
+          <Button asChild variant="glass" size="lg">
             <a href={whatsappLink(DEFAULT_WA_MESSAGE)} target="_blank" rel="noopener noreferrer">
-              <MessageCircle /> Falar no WhatsApp
+              <MessageCircle /> WhatsApp
+            </a>
+          </Button>
+          <Button asChild variant="hero" size="lg">
+            <a href="#diagnostico">
+              <ClipboardCheck /> Diagnóstico
             </a>
           </Button>
         </div>
@@ -99,8 +104,13 @@ export function Navbar() {
                 </motion.li>
               ))}
             </ul>
-            <div className="px-6 pt-8">
+            <div className="grid gap-3 px-6 pt-8">
               <Button asChild variant="hero" size="xl" className="w-full">
+                <a href="#diagnostico" onClick={() => setOpen(false)}>
+                  <ClipboardCheck /> Solicitar Diagnóstico
+                </a>
+              </Button>
+              <Button asChild variant="whatsapp" size="xl" className="w-full">
                 <a
                   href={whatsappLink(DEFAULT_WA_MESSAGE)}
                   target="_blank"
