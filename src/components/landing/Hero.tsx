@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { MessageCircle, Phone, ArrowRight, Instagram, Facebook, Linkedin } from "lucide-react";
+import { MessageCircle, Phone, ArrowRight, Instagram, Facebook, Linkedin, ClipboardCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MORPH_WORDS } from "./data";
 import { CONTACT, whatsappLink, DEFAULT_WA_MESSAGE } from "@/lib/contact";
@@ -41,16 +41,14 @@ export function Hero() {
           </span>
 
           <h1 className="mt-5 h-display font-display font-extrabold text-foreground">
-            Transformamos visão em{" "}
-            <span className="text-gradient">tecnologia, marca e crescimento.</span>
+            Criamos tecnologia, marca e sistemas digitais para{" "}
+            <span className="text-gradient">empresas que querem crescer.</span>
           </h1>
 
           <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground sm:mt-5 sm:text-lg">
-            Estratégia, design, marketing, motion, websites, softwares e apps para empresas
-            que querem evoluir.
+            Websites, apps, softwares, marketing, motion e automação para transformar presença digital em confiança, operação e vendas.
           </p>
 
-          {/* frase morph */}
           <div className="mt-5 flex flex-wrap items-center justify-center gap-x-2 gap-y-2 font-display text-xl font-bold sm:text-2xl lg:text-3xl">
             <span className="text-foreground">Criamos</span>
             <span className="relative inline-flex h-9 min-w-[7.5rem] items-center justify-center overflow-hidden rounded-lg bg-gradient-primary px-3 sm:h-11 sm:min-w-[9rem] sm:px-4">
@@ -72,6 +70,11 @@ export function Hero() {
 
           <div className="mt-7 flex flex-col items-center justify-center gap-2.5 sm:flex-row sm:flex-wrap">
             <Button asChild variant="hero" size="lg" className="w-full sm:w-auto">
+              <a href="#diagnostico">
+                <ClipboardCheck /> Solicitar Diagnóstico Gratuito
+              </a>
+            </Button>
+            <Button asChild variant="whatsapp" size="lg" className="w-full sm:w-auto">
               <a href={whatsappLink(DEFAULT_WA_MESSAGE)} target="_blank" rel="noopener noreferrer">
                 <MessageCircle /> Falar no WhatsApp
               </a>
@@ -99,8 +102,8 @@ export function Hero() {
               <a
                 key={label}
                 href={href}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={label === "Telefone" ? undefined : "_blank"}
+                rel={label === "Telefone" ? undefined : "noopener noreferrer"}
                 aria-label={label}
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-all hover:-translate-y-1 hover:border-primary hover:text-primary"
               >

@@ -42,8 +42,8 @@ export function CtaSection() {
               </a>
             </Button>
             <Button asChild variant="outline" size="xl" className="border-white/30 bg-transparent text-primary-foreground hover:bg-white/10 hover:text-primary-foreground">
-              <a href="#contacto">
-                <FileText /> Solicitar Orçamento
+              <a href="#diagnostico">
+                <FileText /> Diagnóstico Gratuito
               </a>
             </Button>
           </div>

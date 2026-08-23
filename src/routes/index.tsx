@@ -12,6 +12,7 @@ const Solutions = lazy(() => import("@/components/landing/Solutions").then((m) =
 const Process = lazy(() => import("@/components/landing/Process").then((m) => ({ default: m.Process })));
 const Projects = lazy(() => import("@/components/landing/Projects").then((m) => ({ default: m.Projects })));
 const MotionVideo = lazy(() => import("@/components/landing/MotionVideo").then((m) => ({ default: m.MotionVideo })));
+const LeadCapture = lazy(() => import("@/components/landing/LeadCapture").then((m) => ({ default: m.LeadCapture })));
 const Benefits = lazy(() => import("@/components/landing/Benefits").then((m) => ({ default: m.Benefits })));
 const CtaSection = lazy(() => import("@/components/landing/CtaSection").then((m) => ({ default: m.CtaSection })));
 const Contact = lazy(() => import("@/components/landing/Contact").then((m) => ({ default: m.Contact })));
@@ -48,6 +49,7 @@ function Index() {
           <Solutions />
           <Process />
           <Projects />
+          <LeadCapture />
           <MotionVideo />
           <Benefits />
           <CtaSection />
