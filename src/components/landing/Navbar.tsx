@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -6,9 +6,9 @@ import { Logo } from "./Logo";
 import { whatsappLink, DEFAULT_WA_MESSAGE } from "@/lib/contact";
 
 const LINKS = [
-  { label: "InÃ­cio", href: "#inicio" },
-  { label: "ServiÃ§os", href: "#servicos" },
-  { label: "SoluÃ§Ãµes", href: "#solucoes" },
+  { label: "Início", href: "#inicio" },
+  { label: "Serviços", href: "#servicos" },
+  { label: "Soluções", href: "#solucoes" },
   { label: "Processo", href: "#processo" },
   { label: "Projectos", href: "#projectos" },
   { label: "Contacto", href: "#contacto" },
@@ -32,7 +32,7 @@ export function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 lg:px-8">
-        <a href="#inicio" className="flex items-center" aria-label="Centro Prospectivo TecnolÃ³gico">
+        <a href="#inicio" className="flex items-center" aria-label="Centro Prospectivo Tecnológico">
           <Logo className="h-11 sm:h-12 lg:h-14" />
         </a>
 
@@ -117,4 +117,3 @@ export function Navbar() {
     </header>
   );
 }
-
