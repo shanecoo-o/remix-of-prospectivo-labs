@@ -1,0 +1,17 @@
+{
+  "name": "Centro Prospectivo Tecnológico",
+  "short_name": "Centro Prospectivo",
+  "description": "Websites, sistemas, apps, marketing, branding, motion e automação para empresas que querem crescer.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
