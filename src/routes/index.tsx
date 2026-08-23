@@ -6,6 +6,7 @@ import { Hero } from "@/components/landing/Hero";
 import { Services } from "@/components/landing/Services";
 import { HowWeHelp } from "@/components/landing/HowWeHelp";
 import { StickyMobileCta } from "@/components/landing/StickyMobileCta";
+import { TechShowcase } from "@/components/landing/TechShowcase";
 
 const Solutions = lazy(() => import("@/components/landing/Solutions").then((m) => ({ default: m.Solutions })));
 const Process = lazy(() => import("@/components/landing/Process").then((m) => ({ default: m.Process })));
@@ -42,6 +43,7 @@ function Index() {
         <Hero />
         <Services />
         <HowWeHelp />
+        <TechShowcase />
         <Suspense fallback={<div className="h-32" />}>
           <Solutions />
           <Process />
