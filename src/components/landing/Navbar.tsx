@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ClipboardCheck, Menu, MessageCircle, X } from "lucide-react";
+import { BriefcaseBusiness, ClipboardCheck, Menu, MessageCircle, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "./Logo";
 import { whatsappLink, DEFAULT_WA_MESSAGE } from "@/lib/contact";
@@ -9,9 +9,9 @@ const LINKS = [
   { label: "Início", href: "#inicio" },
   { label: "Serviços", href: "#servicos" },
   { label: "Laboratório", href: "#laboratorio" },
-  { label: "Processo", href: "#processo" },
-  { label: "Projectos", href: "#projectos" },
+  { label: "Portfólio", href: "#projectos" },
   { label: "Diagnóstico", href: "#diagnostico" },
+  { label: "Contacto", href: "#contacto" },
 ];
 
 export function Navbar() {
@@ -56,8 +56,8 @@ export function Navbar() {
             </a>
           </Button>
           <Button asChild variant="hero" size="lg">
-            <a href="#diagnostico">
-              <ClipboardCheck /> Diagnóstico
+            <a href="#projectos">
+              <BriefcaseBusiness /> Portfólio
             </a>
           </Button>
         </div>
@@ -106,6 +106,11 @@ export function Navbar() {
             </ul>
             <div className="grid gap-3 px-6 pt-8">
               <Button asChild variant="hero" size="xl" className="w-full">
+                <a href="#projectos" onClick={() => setOpen(false)}>
+                  <BriefcaseBusiness /> Ver Portfólio
+                </a>
+              </Button>
+              <Button asChild variant="glass" size="xl" className="w-full">
                 <a href="#diagnostico" onClick={() => setOpen(false)}>
                   <ClipboardCheck /> Solicitar Diagnóstico
                 </a>

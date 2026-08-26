@@ -1,4 +1,4 @@
-import { MessageCircle, Phone, Instagram, Facebook, Linkedin, Mail } from "lucide-react";
+import { Facebook, MessageCircle, Phone, MapPin } from "lucide-react";
 import { Logo } from "./Logo";
 import { CONTACT, whatsappLink } from "@/lib/contact";
 import { SERVICES } from "./data";
@@ -11,15 +11,12 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Logo className="h-9" />
             <p className="mt-4 max-w-sm text-sm text-muted-foreground">
-              Estratégia, design e tecnologia para empresas que querem avançar. Transformamos visão
-              em soluções digitais reais.
+              {CONTACT.slogan}. Estratégia, design e tecnologia para empresas que querem avançar.
             </p>
             <div className="mt-5 flex gap-3">
               {[
-                { Icon: Instagram, href: CONTACT.instagram, label: "Instagram" },
                 { Icon: Facebook, href: CONTACT.facebook, label: "Facebook" },
-                { Icon: Linkedin, href: CONTACT.linkedin, label: "LinkedIn" },
-                { Icon: MessageCircle, href: whatsappLink("Olá!"), label: "WhatsApp" },
+                { Icon: MessageCircle, href: whatsappLink("Olá Centro Prospectivo Tecnológico!"), label: "WhatsApp" },
               ].map(({ Icon, href, label }) => (
                 <a
                   key={label}
@@ -56,19 +53,17 @@ export function Footer() {
             </h3>
             <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
               <li>
+                <a href={whatsappLink("Olá Centro Prospectivo Tecnológico!")} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-primary">
+                  <MessageCircle className="h-4 w-4" /> {CONTACT.whatsappDisplay}
+                </a>
+              </li>
+              <li>
                 <a href={`tel:${CONTACT.phoneTel}`} className="flex items-center gap-2 hover:text-primary">
                   <Phone className="h-4 w-4" /> {CONTACT.phoneDisplay}
                 </a>
               </li>
-              <li>
-                <a href={`mailto:${CONTACT.email}`} className="flex items-center gap-2 hover:text-primary">
-                  <Mail className="h-4 w-4" /> {CONTACT.email}
-                </a>
-              </li>
-              <li>
-                <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-primary">
-                  <Instagram className="h-4 w-4" /> @centroprospectivo
-                </a>
+              <li className="flex items-center gap-2">
+                <MapPin className="h-4 w-4" /> {CONTACT.location}
               </li>
             </ul>
           </div>
@@ -76,7 +71,7 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-border pt-6 text-sm text-muted-foreground sm:flex-row">
           <p className="font-medium text-foreground">
-            Centro Prospectivo Tecnológico — visão, tecnologia e crescimento.
+            {CONTACT.brandName} — {CONTACT.slogan}.
           </p>
           <p>© {new Date().getFullYear()} Todos os direitos reservados.</p>
         </div>

@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { MessageCircle, Phone, Instagram, Mail, Send } from "lucide-react";
+import { Facebook, MapPin, MessageCircle, Phone, Send } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,15 +17,26 @@ import { SERVICES } from "./data";
 import { CONTACT, whatsappLink } from "@/lib/contact";
 
 export function Contact() {
-  const [form, setForm] = useState({ nome: "", telefone: "", email: "", servico: "", mensagem: "" });
+  const [form, setForm] = useState({ nome: "", telefone: "", servico: "", mensagem: "" });
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const msg = `Olá Centro Prospectivo Tecnológico!%0A%0ANome: ${form.nome}%0ATelefone: ${form.telefone}%0AEmail: ${form.email}%0AServiço de interesse: ${form.servico || "—"}%0A%0A${form.mensagem}`;
+
+    const msg = [
+      "Olá Centro Prospectivo Tecnológico!",
+      "",
+      `Nome: ${form.nome}`,
+      `Telefone: ${form.telefone}`,
+      `Serviço de interesse: ${form.servico || "—"}`,
+      "",
+      form.mensagem || "Gostaria de saber mais sobre os vossos serviços.",
+    ].join("\n");
+
     toast.success("Mensagem preparada", {
       description: "Para resposta mais rápida, continue pelo WhatsApp.",
     });
-    window.open(`https://wa.me/${CONTACT.whatsappNumber}?text=${msg}`, "_blank", "noopener");
+
+    window.open(whatsappLink(msg), "_blank", "noopener,noreferrer");
   };
 
   const set = (k: keyof typeof form) => (v: string) => setForm((f) => ({ ...f, [k]: v }));
@@ -44,26 +55,24 @@ export function Contact() {
             Vamos construir o próximo passo.
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground">
-            Preencha o formulário ou fale connosco directamente pelos canais abaixo.
+            Fale connosco por WhatsApp, chamada ou Facebook. Estamos em Maputo e trabalhamos soluções digitais para empresas.
           </p>
         </Reveal>
 
         <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:gap-16">
           <Reveal>
-
-
             <div className="mt-8 flex flex-col gap-3">
               {[
-                { Icon: MessageCircle, label: "WhatsApp", value: CONTACT.phoneDisplay, href: whatsappLink("Olá Centro Prospectivo Tecnológico!") },
-                { Icon: Phone, label: "Telefone", value: CONTACT.phoneDisplay, href: `tel:${CONTACT.phoneTel}` },
-                { Icon: Mail, label: "Email", value: CONTACT.email, href: `mailto:${CONTACT.email}` },
-                { Icon: Instagram, label: "Instagram", value: "@centroprospectivo", href: CONTACT.instagram },
+                { Icon: MessageCircle, label: "WhatsApp", value: CONTACT.whatsappDisplay, href: whatsappLink("Olá Centro Prospectivo Tecnológico!") },
+                { Icon: Phone, label: "Chamadas", value: CONTACT.phoneDisplay, href: `tel:${CONTACT.phoneTel}` },
+                { Icon: Facebook, label: "Facebook", value: "Centro Prospectivo Tecnológico", href: CONTACT.facebook },
+                { Icon: MapPin, label: "Localização", value: CONTACT.location, href: "#" },
               ].map(({ Icon, label, value, href }) => (
                 <a
                   key={label}
                   href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                   className="flex items-center gap-4 rounded-xl border border-border bg-card p-4 shadow-soft transition-colors hover:border-primary/40"
                 >
                   <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-gradient-primary text-primary-foreground">
@@ -90,15 +99,9 @@ export function Contact() {
                   <Label htmlFor="nome">Nome</Label>
                   <Input id="nome" required value={form.nome} onChange={(e) => set("nome")(e.target.value)} placeholder="O seu nome" />
                 </div>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="grid gap-2">
-                    <Label htmlFor="telefone">Telefone</Label>
-                    <Input id="telefone" required value={form.telefone} onChange={(e) => set("telefone")(e.target.value)} placeholder="+258 ..." />
-                  </div>
-                  <div className="grid gap-2">
-                    <Label htmlFor="email">Email</Label>
-                    <Input id="email" type="email" value={form.email} onChange={(e) => set("email")(e.target.value)} placeholder="email@empresa.com" />
-                  </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="telefone">Telefone / WhatsApp</Label>
+                  <Input id="telefone" required value={form.telefone} onChange={(e) => set("telefone")(e.target.value)} placeholder="+258 ..." />
                 </div>
                 <div className="grid gap-2">
                   <Label>Serviço de interesse</Label>
@@ -117,10 +120,10 @@ export function Contact() {
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="mensagem">Mensagem</Label>
-                  <Textarea id="mensagem" rows={4} value={form.mensagem} onChange={(e) => set("mensagem")(e.target.value)} placeholder="Conte-nos sobre o seu projeto..." />
+                  <Textarea id="mensagem" rows={4} value={form.mensagem} onChange={(e) => set("mensagem")(e.target.value)} placeholder="Conte-nos sobre o seu projecto..." />
                 </div>
                 <Button type="submit" variant="hero" size="xl" className="mt-2 w-full">
-                  <Send /> Enviar mensagem
+                  <Send /> Enviar pelo WhatsApp
                 </Button>
               </div>
             </form>

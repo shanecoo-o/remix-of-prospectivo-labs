@@ -1,14 +1,24 @@
-// Configuração de contacto — fácil de trocar.
-// Substitua os placeholders pelos dados reais do Centro Prospectivo Tecnológico.
+// Configuração oficial de contacto do Centro Prospectivo Tecnológico (CPT).
 
 export const CONTACT = {
-  phoneDisplay: "+258 84 000 0000",
-  phoneTel: "+258840000000",
-  whatsappNumber: "258840000000", // sem '+' nem espaços
-  instagram: "https://instagram.com/centroprospectivo",
-  facebook: "https://facebook.com/centroprospectivo",
-  linkedin: "https://linkedin.com/company/centroprospectivo",
-  email: "geral@centroprospectivo.tech",
+  brandName: "Centro Prospectivo Tecnológico",
+  shortName: "CPT",
+  slogan: "Soluções tecnológicas ao seu alcance",
+  location: "Maputo, Moçambique",
+
+  whatsappDisplay: "+258 84 503 7090",
+  whatsappNumber: "258845037090", // sem '+' nem espaços
+
+  phoneDisplay: "+258 87 746 7606 / +258 84 266 7606",
+  phoneTel: "+258877467606",
+  phoneSecondaryTel: "+258842667606",
+
+  facebook: "https://web.facebook.com/profile.php?id=61591052609739",
+
+  // Canais ainda não confirmados.
+  instagram: "",
+  linkedin: "",
+  email: "",
 } as const;
 
 export function whatsappLink(message: string): string {

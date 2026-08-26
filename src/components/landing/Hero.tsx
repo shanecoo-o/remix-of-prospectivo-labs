@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { MessageCircle, Phone, ArrowRight, Instagram, Facebook, Linkedin, ClipboardCheck } from "lucide-react";
+import { MessageCircle, Phone, ArrowRight, Facebook, ClipboardCheck, BriefcaseBusiness } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MORPH_WORDS } from "./data";
 import { CONTACT, whatsappLink, DEFAULT_WA_MESSAGE } from "@/lib/contact";
@@ -37,7 +37,7 @@ export function Hero() {
           className="mx-auto max-w-4xl text-center"
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-border glass px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary sm:text-xs">
-            Visão · Tecnologia · Crescimento
+            {CONTACT.slogan}
           </span>
 
           <h1 className="mt-5 h-display font-display font-extrabold text-foreground">
@@ -70,8 +70,8 @@ export function Hero() {
 
           <div className="mt-7 flex flex-col items-center justify-center gap-2.5 sm:flex-row sm:flex-wrap">
             <Button asChild variant="hero" size="lg" className="w-full sm:w-auto">
-              <a href="#diagnostico">
-                <ClipboardCheck /> Solicitar Diagnóstico Gratuito
+              <a href="#projectos">
+                <BriefcaseBusiness /> Ver Portfólio
               </a>
             </Button>
             <Button asChild variant="whatsapp" size="lg" className="w-full sm:w-auto">
@@ -80,30 +80,28 @@ export function Hero() {
               </a>
             </Button>
             <Button asChild variant="glass" size="lg" className="w-full sm:w-auto">
-              <a href="#servicos">
-                Ver Serviços <ArrowRight />
+              <a href="#diagnostico">
+                <ClipboardCheck /> Diagnóstico
               </a>
             </Button>
             <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
-              <a href={`tel:${CONTACT.phoneTel}`}>
-                <Phone /> Ligar Agora
+              <a href="#servicos">
+                Ver Serviços <ArrowRight />
               </a>
             </Button>
           </div>
 
           <div className="mt-6 flex items-center justify-center gap-2.5 sm:gap-3">
             {[
-              { Icon: MessageCircle, href: whatsappLink(DEFAULT_WA_MESSAGE), label: "WhatsApp" },
-              { Icon: Phone, href: `tel:${CONTACT.phoneTel}`, label: "Telefone" },
-              { Icon: Instagram, href: CONTACT.instagram, label: "Instagram" },
-              { Icon: Facebook, href: CONTACT.facebook, label: "Facebook" },
-              { Icon: Linkedin, href: CONTACT.linkedin, label: "LinkedIn" },
-            ].map(({ Icon, href, label }) => (
+              { Icon: MessageCircle, href: whatsappLink(DEFAULT_WA_MESSAGE), label: "WhatsApp", external: true },
+              { Icon: Phone, href: `tel:${CONTACT.phoneTel}`, label: "Telefone", external: false },
+              { Icon: Facebook, href: CONTACT.facebook, label: "Facebook", external: true },
+            ].map(({ Icon, href, label, external }) => (
               <a
                 key={label}
                 href={href}
-                target={label === "Telefone" ? undefined : "_blank"}
-                rel={label === "Telefone" ? undefined : "noopener noreferrer"}
+                target={external ? "_blank" : undefined}
+                rel={external ? "noopener noreferrer" : undefined}
                 aria-label={label}
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-all hover:-translate-y-1 hover:border-primary hover:text-primary"
               >

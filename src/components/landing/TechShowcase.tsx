@@ -51,7 +51,7 @@ export function TechShowcase() {
 
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             <div className="rounded-3xl border border-border bg-card/80 p-5 shadow-card backdrop-blur">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Padrão Solima</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Padrão de Excelência</p>
               <p className="mt-2 text-sm leading-7 text-muted-foreground">
                 Acabamento premium, organização, consistência visual e robustez de entrega.
               </p>

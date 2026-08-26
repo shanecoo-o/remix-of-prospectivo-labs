@@ -20,9 +20,9 @@ const Contact = lazy(() => import("@/components/landing/Contact").then((m) => ({
 const Footer = lazy(() => import("@/components/landing/Footer").then((m) => ({ default: m.Footer })));
 
 const SITE_URL = "https://centroprospectivo.tech";
-const TITLE = "Centro Prospectivo Tecnológico | Websites, Sistemas, Apps, Marketing e Automação";
+const TITLE = "Centro Prospectivo Tecnológico | Soluções tecnológicas ao seu alcance";
 const DESC =
-  "Criamos websites, sistemas, apps, marketing, branding, motion e automação para empresas que querem crescer com tecnologia, estratégia e conversão.";
+  "Soluções tecnológicas ao seu alcance: websites, sistemas, apps, marketing, branding, motion e automação para empresas que querem crescer.";
 const OG_IMAGE = `${SITE_URL}/og-centro-prospectivo.svg`;
 
 export const Route = createFileRoute("/")({
